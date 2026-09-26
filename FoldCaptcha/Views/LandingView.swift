@@ -11,67 +11,32 @@ struct LandingView: View {
 
     var body: some View {
         ZStack {
-            landingBackground
+            background
 
-            VStack(spacing: 28) {
-                Spacer(minLength: 24)
+            VStack(spacing: 0) {
+                topBrand
+                    .padding(.top, 26)
 
-                HumanLogo(
-                    angle: viewModel.currentAngle
+                Spacer(minLength: 14)
+
+                LandingHeroVisual(
+                    angle: viewModel.currentAngle,
+                    hingeAvailable: viewModel.hingeAvailable
                 )
+                .frame(maxWidth: 620)
+                .padding(.horizontal, 8)
 
-                landingGlass
+                Spacer(minLength: 12)
 
-                VStack(spacing: 10) {
-                    Text("Bend to begin")
-                        .font(.headline)
+                bottomCopy
 
-                    Text(
-                        "Current angle: \(Int(viewModel.currentAngle.rounded()))°"
-                    )
-                    .font(
-                        .title3
-                            .monospacedDigit()
-                            .bold()
-                    )
-                    .contentTransition(.numericText())
-                    .accessibilityLabel(
-                        "Current hinge angle"
-                    )
-                    .accessibilityValue(
-                        "\(Int(viewModel.currentAngle.rounded())) degrees"
-                    )
+                Spacer(minLength: 18)
 
-                    Text(
-                        "The angle updates live as you fold the Duo."
-                    )
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                }
-
-                Button("Start verification") {
-                    onBegin()
-                }
-                .buttonStyle(.glassProminent)
-                .accessibilityHint(
-                    "Starts the fold verification challenge."
-                )
-
-                if !viewModel.hingeAvailable {
-                    Text(
-                        "On iPhone Duo, folding the device starts automatically. Use the button above on other simulators."
-                    )
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-                }
-
-                Spacer(minLength: 20)
+                controls
+                    .padding(.bottom, 28)
             }
-            .padding(28)
-            .frame(maxWidth: 560)
+            .padding(.horizontal, 24)
+            .frame(maxWidth: 680)
             .frame(maxWidth: .infinity)
         }
         .onChange(
@@ -84,9 +49,6 @@ struct LandingView: View {
                 return
             }
 
-            // Treat the first real Duo reading as the baseline so opening the
-            // app never auto-starts just because the initial placeholder angle
-            // differs from the hardware angle.
             guard let initialAngle else {
                 self.initialAngle = newValue
                 return
@@ -103,66 +65,111 @@ struct LandingView: View {
         }
     }
 
-    private var landingGlass: some View {
-        VStack(spacing: 18) {
-            FoldVisualizer(
-                currentAngle: viewModel.currentAngle,
-                targetAngle: 110,
-                isInsideTolerance: false
-            )
-            .opacity(0.95)
-
-            HStack {
-                Label(
-                    "Live hinge",
-                    systemImage: "ruler"
-                )
-                .font(.subheadline.bold())
-
-                Spacer()
-
-                Text(
-                    "\(Int(viewModel.currentAngle.rounded()))°"
-                )
+    private var topBrand: some View {
+        VStack(spacing: 6) {
+            Text("HUMAN")
                 .font(
-                    .title2
-                        .monospacedDigit()
-                        .bold()
+                    .system(
+                        size: 30,
+                        weight: .bold
+                    )
                 )
-                .contentTransition(.numericText())
-            }
+                .tracking(3.5)
+
+            Text("PHYSICAL VERIFICATION")
+                .font(
+                    .caption2
+                        .weight(.semibold)
+                )
+                .tracking(2)
+                .foregroundStyle(.tertiary)
         }
-        .padding(24)
-        .glassEffect(
-            .regular,
-            in: RoundedRectangle(
-                cornerRadius: 30,
-                style: .continuous
-            )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(
+            "HUMAN physical verification"
         )
     }
 
-    private var landingBackground: some View {
+    private var bottomCopy: some View {
+        VStack(spacing: 8) {
+            Text("Bend to begin")
+                .font(
+                    .system(
+                        size: 28,
+                        weight: .semibold,
+                        design: .rounded
+                    )
+                )
+
+            Text(
+                viewModel.hingeAvailable
+                    ? "Your phone is the challenge."
+                    : "Move the Duo hinge or use the button below."
+            )
+            .font(.subheadline)
+            .foregroundStyle(.secondary)
+            .multilineTextAlignment(.center)
+
+            Text(
+                "The angle above moves live with the device."
+            )
+            .font(.footnote)
+            .foregroundStyle(.tertiary)
+            .multilineTextAlignment(.center)
+        }
+    }
+
+    private var controls: some View {
+        VStack(spacing: 12) {
+            Button {
+                onBegin()
+            } label: {
+                HStack(spacing: 8) {
+                    Text("Start verification")
+                    Image(
+                        systemName: "arrow.right"
+                    )
+                }
+                .font(.headline)
+                .frame(maxWidth: 360)
+            }
+            .buttonStyle(.glassProminent)
+            .accessibilityHint(
+                "Starts the fold verification challenge."
+            )
+
+            if !viewModel.hingeAvailable {
+                Text(
+                    "On iPhone Duo, a real fold of about 12° starts automatically."
+                )
+                .font(.caption)
+                .foregroundStyle(.tertiary)
+                .multilineTextAlignment(.center)
+            }
+        }
+    }
+
+    private var background: some View {
         ZStack {
             Color(.systemBackground)
 
             RadialGradient(
                 colors: [
-                    Color.accentColor.opacity(0.16),
+                    Color.accentColor.opacity(0.12),
                     Color.clear
                 ],
                 center: .center,
-                startRadius: 20,
-                endRadius: 360
+                startRadius: 10,
+                endRadius: 430
             )
 
             LinearGradient(
                 colors: [
                     Color.clear,
-                    Color.secondary.opacity(0.07)
+                    Color.secondary.opacity(0.045)
                 ],
                 startPoint: .top,
-                endPoint: .bottomTrailing
+                endPoint: .bottom
             )
         }
         .ignoresSafeArea()
