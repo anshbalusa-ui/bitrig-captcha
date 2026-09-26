@@ -1,6 +1,6 @@
 import Foundation
 
-struct FoldTarget: Identifiable, Equatable, Sendable {
+struct FoldTarget: Identifiable, Equatable, Codable, Sendable {
     let id: UUID
     let angle: Double
     let tolerance: Double
@@ -27,11 +27,14 @@ struct FoldTarget: Identifiable, Equatable, Sendable {
     }
 }
 
-struct FoldChallenge: Identifiable, Equatable, Sendable {
+struct FoldChallenge: Identifiable, Equatable, Codable, Sendable {
     let id: UUID
     let targets: [FoldTarget]
 
-    init(id: UUID = UUID(), targets: [FoldTarget]) {
+    init(
+        id: UUID = UUID(),
+        targets: [FoldTarget]
+    ) {
         self.id = id
         self.targets = targets
     }
