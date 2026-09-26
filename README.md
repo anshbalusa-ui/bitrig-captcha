@@ -16,7 +16,7 @@ The app opens on a dedicated **HUMAN** landing page instead of dropping directly
 - automatic transition into verification after a meaningful real hinge movement
 - “Start verification” accessibility/simulator fallback
 
-The logo is implemented natively in `FoldCaptcha/Brand/HumanLogo.swift` and a vector reference asset is included at `BrandAssets/human-logo.svg`.
+The logo is implemented natively in `FoldCaptcha/Brand/HumanLogo.swift` and a vector reference asset is included at `BrandAssets/human-logo.svg`. The opening screen now uses `LandingHeroVisual.swift`: a large live semicircle with a moving hinge needle, travelling arc point, live degree readout, reference ticks, and a soft glow.
 
 Traditional CAPTCHAs ask the user to recognize images or type text. This project turns the **physical fold of the device itself into the challenge**.
 
@@ -86,6 +86,7 @@ bitrig-captcha/
 │   └── Views/
 │       ├── ChallengeView.swift
 │       ├── LandingView.swift
+│       ├── LandingHeroVisual.swift
 │       ├── RootView.swift
 │       ├── DebugHingeControls.swift
 │       ├── FoldVisualizer.swift
@@ -99,7 +100,9 @@ bitrig-captcha/
     ├── BITRIG_PLAN_PROMPT.md
     ├── PRODUCT_SPEC.md
     ├── SECURITY_NOTES.md
-    └── UI_SPEC.md
+    ├── UI_SPEC.md
+    ├── LANDING_VISUAL.md
+    └── XCODE_INTEGRATION.md
 ```
 
 ## Run the iOS app
@@ -149,3 +152,8 @@ Read the specs first, then use the planning prompt in:
 `docs/BITRIG_PLAN_PROMPT.md`
 
 The codebase is already scaffolded, so Bitrig should focus on compiling against the installed iOS 27.1 SDK, polishing the interaction, and testing on the Duo simulator rather than rebuilding the architecture from scratch.
+
+
+## Moving this into the main Xcode project
+
+Use `docs/XCODE_INTEGRATION.md` as the handoff. It lists every Swift file to copy, the target settings, the dependency map, and the exact `RootView` snippet to embed the full feature into an existing app without replacing that app's `@main` entry point.
