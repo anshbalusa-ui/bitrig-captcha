@@ -16,15 +16,18 @@ The logo is implemented directly in SwiftUI in:
 
 `FoldCaptcha/Brand/HumanLogo.swift`
 
-It is not a static image. The mark between **HU** and **MAN** is a tiny live hinge graphic that mirrors the actual Duo angle.
+The logo uses a **clean HUMAN wordmark** with a separate minimal semicircle/protractor symbol above it. The letters are never split or distorted. The symbol contains one live needle that mirrors the actual Duo hinge angle, so the branding still reacts to the hardware without making the typography gimmicky.
 
 Conceptually:
 
 ```text
-HU  /  MAN
+      ◜ │ ◝
+        ●
+
+      HUMAN
 ```
 
-As the phone folds, the center mark folds with it. This makes the logo itself part of the Duo interaction instead of adding a decorative logo unrelated to the product.
+The static vector reference uses a 90° needle, while the SwiftUI version animates the needle to the real hinge angle.
 
 ## Landing page
 
@@ -65,7 +68,7 @@ Keep the landing page native and restrained:
 - large empty space around the logo and fold graphic
 - live numeric angle uses monospaced digits
 - smooth number transitions
-- subtle spring motion on the hinge mark
+- subtle spring motion on the protractor needle
 - no unnecessary menus or onboarding carousel
 
 The physical device is the visual centerpiece.
