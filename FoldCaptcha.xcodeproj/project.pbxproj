@@ -7,40 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000000000000000000000015 /* FoldCaptchaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000014 /* FoldCaptchaApp.swift */; };
-		000000000000000000000017 /* FoldChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000016 /* FoldChallenge.swift */; };
-		000000000000000000000019 /* VerificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000018 /* VerificationResult.swift */; };
-		00000000000000000000001B /* ChallengeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001A /* ChallengeGenerator.swift */; };
-		00000000000000000000001D /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001C /* HapticService.swift */; };
-		00000000000000000000001F /* HingeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001E /* HingeService.swift */; };
-		000000000000000000000021 /* RemoteVerificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000020 /* RemoteVerificationClient.swift */; };
-		000000000000000000000023 /* TrajectoryValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000022 /* TrajectoryValidator.swift */; };
-		000000000000000000000025 /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000024 /* ChallengeViewModel.swift */; };
-		000000000000000000000027 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000026 /* ChallengeView.swift */; };
-		000000000000000000000029 /* DebugHingeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000028 /* DebugHingeControls.swift */; };
-		00000000000000000000002B /* FoldVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002A /* FoldVisualizer.swift */; };
-		00000000000000000000002D /* VerificationSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002C /* VerificationSuccessView.swift */; };
+		000000000000000000000016 /* FoldCaptchaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000015 /* FoldCaptchaApp.swift */; };
+		000000000000000000000018 /* HumanLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000017 /* HumanLogo.swift */; };
+		00000000000000000000001A /* FoldChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000019 /* FoldChallenge.swift */; };
+		00000000000000000000001C /* VerificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001B /* VerificationResult.swift */; };
+		00000000000000000000001E /* ChallengeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001D /* ChallengeGenerator.swift */; };
+		000000000000000000000020 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001F /* HapticService.swift */; };
+		000000000000000000000022 /* HingeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000021 /* HingeService.swift */; };
+		000000000000000000000024 /* RemoteVerificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000023 /* RemoteVerificationClient.swift */; };
+		000000000000000000000026 /* TrajectoryValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000025 /* TrajectoryValidator.swift */; };
+		000000000000000000000028 /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000027 /* ChallengeViewModel.swift */; };
+		00000000000000000000002A /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000029 /* ChallengeView.swift */; };
+		00000000000000000000002C /* DebugHingeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002B /* DebugHingeControls.swift */; };
+		00000000000000000000002E /* FoldVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002D /* FoldVisualizer.swift */; };
+		000000000000000000000030 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002F /* LandingView.swift */; };
+		000000000000000000000032 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000031 /* RootView.swift */; };
+		000000000000000000000034 /* VerificationSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000033 /* VerificationSuccessView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000000000000000000000014 /* FoldCaptchaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldCaptchaApp.swift; sourceTree = "<group>"; };
-		000000000000000000000016 /* FoldChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldChallenge.swift; sourceTree = "<group>"; };
-		000000000000000000000018 /* VerificationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResult.swift; sourceTree = "<group>"; };
-		00000000000000000000001A /* ChallengeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeGenerator.swift; sourceTree = "<group>"; };
-		00000000000000000000001C /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
-		00000000000000000000001E /* HingeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HingeService.swift; sourceTree = "<group>"; };
-		000000000000000000000020 /* RemoteVerificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVerificationClient.swift; sourceTree = "<group>"; };
-		000000000000000000000022 /* TrajectoryValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrajectoryValidator.swift; sourceTree = "<group>"; };
-		000000000000000000000024 /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
-		000000000000000000000026 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
-		000000000000000000000028 /* DebugHingeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHingeControls.swift; sourceTree = "<group>"; };
-		00000000000000000000002A /* FoldVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldVisualizer.swift; sourceTree = "<group>"; };
-		00000000000000000000002C /* VerificationSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSuccessView.swift; sourceTree = "<group>"; };
+		000000000000000000000015 /* FoldCaptchaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldCaptchaApp.swift; sourceTree = "<group>"; };
+		000000000000000000000017 /* HumanLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanLogo.swift; sourceTree = "<group>"; };
+		000000000000000000000019 /* FoldChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldChallenge.swift; sourceTree = "<group>"; };
+		00000000000000000000001B /* VerificationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResult.swift; sourceTree = "<group>"; };
+		00000000000000000000001D /* ChallengeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeGenerator.swift; sourceTree = "<group>"; };
+		00000000000000000000001F /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		000000000000000000000021 /* HingeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HingeService.swift; sourceTree = "<group>"; };
+		000000000000000000000023 /* RemoteVerificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVerificationClient.swift; sourceTree = "<group>"; };
+		000000000000000000000025 /* TrajectoryValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrajectoryValidator.swift; sourceTree = "<group>"; };
+		000000000000000000000027 /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
+		000000000000000000000029 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
+		00000000000000000000002B /* DebugHingeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHingeControls.swift; sourceTree = "<group>"; };
+		00000000000000000000002D /* FoldVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldVisualizer.swift; sourceTree = "<group>"; };
+		00000000000000000000002F /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		000000000000000000000031 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		000000000000000000000033 /* VerificationSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSuccessView.swift; sourceTree = "<group>"; };
 		000000000000000000000003 /* FoldCaptcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoldCaptcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00000000000000000000000C /* Frameworks */ = {
+		00000000000000000000000D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,11 +60,12 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000005 /* App */,
-				000000000000000000000006 /* Models */,
-				000000000000000000000007 /* Services */,
-				000000000000000000000008 /* ViewModels */,
-				000000000000000000000009 /* Views */,
-				00000000000000000000000A /* Products */,
+				000000000000000000000006 /* Brand */,
+				000000000000000000000007 /* Models */,
+				000000000000000000000008 /* Services */,
+				000000000000000000000009 /* ViewModels */,
+				00000000000000000000000A /* Views */,
+				00000000000000000000000B /* Products */,
 			);
 			path = FoldCaptcha;
 			sourceTree = "<group>";
@@ -66,52 +73,62 @@
 		000000000000000000000005 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000014 /* FoldCaptchaApp.swift */,
+				000000000000000000000015 /* FoldCaptchaApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		000000000000000000000006 /* Models */ = {
+		000000000000000000000006 /* Brand */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000016 /* FoldChallenge.swift */,
-				000000000000000000000018 /* VerificationResult.swift */,
+				000000000000000000000017 /* HumanLogo.swift */,
+			);
+			path = Brand;
+			sourceTree = "<group>";
+		};
+		000000000000000000000007 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000019 /* FoldChallenge.swift */,
+				00000000000000000000001B /* VerificationResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		000000000000000000000007 /* Services */ = {
+		000000000000000000000008 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				00000000000000000000001A /* ChallengeGenerator.swift */,
-				00000000000000000000001C /* HapticService.swift */,
-				00000000000000000000001E /* HingeService.swift */,
-				000000000000000000000020 /* RemoteVerificationClient.swift */,
-				000000000000000000000022 /* TrajectoryValidator.swift */,
+				00000000000000000000001D /* ChallengeGenerator.swift */,
+				00000000000000000000001F /* HapticService.swift */,
+				000000000000000000000021 /* HingeService.swift */,
+				000000000000000000000023 /* RemoteVerificationClient.swift */,
+				000000000000000000000025 /* TrajectoryValidator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		000000000000000000000008 /* ViewModels */ = {
+		000000000000000000000009 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000024 /* ChallengeViewModel.swift */,
+				000000000000000000000027 /* ChallengeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		000000000000000000000009 /* Views */ = {
+		00000000000000000000000A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				000000000000000000000026 /* ChallengeView.swift */,
-				000000000000000000000028 /* DebugHingeControls.swift */,
-				00000000000000000000002A /* FoldVisualizer.swift */,
-				00000000000000000000002C /* VerificationSuccessView.swift */,
+				000000000000000000000029 /* ChallengeView.swift */,
+				00000000000000000000002B /* DebugHingeControls.swift */,
+				00000000000000000000002D /* FoldVisualizer.swift */,
+				00000000000000000000002F /* LandingView.swift */,
+				000000000000000000000031 /* RootView.swift */,
+				000000000000000000000033 /* VerificationSuccessView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		00000000000000000000000A /* Products */ = {
+		00000000000000000000000B /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				000000000000000000000003 /* FoldCaptcha.app */,
@@ -124,11 +141,11 @@
 /* Begin PBXNativeTarget section */
 		000000000000000000000002 /* FoldCaptcha */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00000000000000000000000F /* Build configuration list for PBXNativeTarget "FoldCaptcha" */;
+			buildConfigurationList = 000000000000000000000010 /* Build configuration list for PBXNativeTarget "FoldCaptcha" */;
 			buildPhases = (
-				00000000000000000000000B /* Sources */,
-				00000000000000000000000C /* Frameworks */,
-				00000000000000000000000D /* Resources */,
+				00000000000000000000000C /* Sources */,
+				00000000000000000000000D /* Frameworks */,
+				00000000000000000000000E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -154,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 00000000000000000000000E /* Build configuration list for PBXProject "FoldCaptcha" */;
+			buildConfigurationList = 00000000000000000000000F /* Build configuration list for PBXProject "FoldCaptcha" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -163,7 +180,7 @@
 				Base,
 			);
 			mainGroup = 000000000000000000000004;
-			productRefGroup = 00000000000000000000000A /* Products */;
+			productRefGroup = 00000000000000000000000B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -173,7 +190,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00000000000000000000000D /* Resources */ = {
+		00000000000000000000000E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -183,30 +200,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00000000000000000000000B /* Sources */ = {
+		00000000000000000000000C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				000000000000000000000015 /* FoldCaptchaApp.swift in Sources */,
-				000000000000000000000017 /* FoldChallenge.swift in Sources */,
-				000000000000000000000019 /* VerificationResult.swift in Sources */,
-				00000000000000000000001B /* ChallengeGenerator.swift in Sources */,
-				00000000000000000000001D /* HapticService.swift in Sources */,
-				00000000000000000000001F /* HingeService.swift in Sources */,
-				000000000000000000000021 /* RemoteVerificationClient.swift in Sources */,
-				000000000000000000000023 /* TrajectoryValidator.swift in Sources */,
-				000000000000000000000025 /* ChallengeViewModel.swift in Sources */,
-				000000000000000000000027 /* ChallengeView.swift in Sources */,
-				000000000000000000000029 /* DebugHingeControls.swift in Sources */,
-				00000000000000000000002B /* FoldVisualizer.swift in Sources */,
-				00000000000000000000002D /* VerificationSuccessView.swift in Sources */,
+				000000000000000000000016 /* FoldCaptchaApp.swift in Sources */,
+				000000000000000000000018 /* HumanLogo.swift in Sources */,
+				00000000000000000000001A /* FoldChallenge.swift in Sources */,
+				00000000000000000000001C /* VerificationResult.swift in Sources */,
+				00000000000000000000001E /* ChallengeGenerator.swift in Sources */,
+				000000000000000000000020 /* HapticService.swift in Sources */,
+				000000000000000000000022 /* HingeService.swift in Sources */,
+				000000000000000000000024 /* RemoteVerificationClient.swift in Sources */,
+				000000000000000000000026 /* TrajectoryValidator.swift in Sources */,
+				000000000000000000000028 /* ChallengeViewModel.swift in Sources */,
+				00000000000000000000002A /* ChallengeView.swift in Sources */,
+				00000000000000000000002C /* DebugHingeControls.swift in Sources */,
+				00000000000000000000002E /* FoldVisualizer.swift in Sources */,
+				000000000000000000000030 /* LandingView.swift in Sources */,
+				000000000000000000000032 /* RootView.swift in Sources */,
+				000000000000000000000034 /* VerificationSuccessView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		000000000000000000000010 /* Debug */ = {
+		000000000000000000000011 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -225,7 +245,7 @@
 			};
 			name = Debug;
 		};
-		000000000000000000000011 /* Release */ = {
+		000000000000000000000012 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -240,13 +260,13 @@
 			};
 			name = Release;
 		};
-		000000000000000000000012 /* Debug */ = {
+		000000000000000000000013 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fold CAPTCHA";
+				INFOPLIST_KEY_CFBundleDisplayName = HUMAN;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -262,13 +282,13 @@
 			};
 			name = Debug;
 		};
-		000000000000000000000013 /* Release */ = {
+		000000000000000000000014 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Fold CAPTCHA";
+				INFOPLIST_KEY_CFBundleDisplayName = HUMAN;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -287,20 +307,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00000000000000000000000E /* Build configuration list for PBXProject "FoldCaptcha" */ = {
+		00000000000000000000000F /* Build configuration list for PBXProject "FoldCaptcha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000010 /* Debug */,
-				000000000000000000000011 /* Release */,
+				000000000000000000000011 /* Debug */,
+				000000000000000000000012 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		00000000000000000000000F /* Build configuration list for PBXNativeTarget "FoldCaptcha" */ = {
+		000000000000000000000010 /* Build configuration list for PBXNativeTarget "FoldCaptcha" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000000000012 /* Debug */,
-				000000000000000000000013 /* Release */,
+				000000000000000000000013 /* Debug */,
+				000000000000000000000014 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
