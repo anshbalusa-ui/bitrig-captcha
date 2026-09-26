@@ -76,7 +76,7 @@ private struct HumanHingeMark: View {
 
             context.stroke(
                 path,
-                with: .foreground,
+                with: .color(.primary),
                 style: StrokeStyle(
                     lineWidth: 4,
                     lineCap: .round,
