@@ -15,7 +15,7 @@ Required landing elements:
 - **HUMAN** fold-reactive logo
 - tagline: **“Your phone is the challenge.”**
 - native Liquid Glass surface
-- live fold visualization
+- **semicircle protractor-style hinge visualization with a live needle and target zone**
 - **live numeric hinge angle that continuously updates while the phone is physically bent**
 - instruction: **“Bend to begin”**
 - automatic transition into the CAPTCHA after a meaningful real hinge movement
@@ -31,9 +31,9 @@ See `docs/BRAND.md` for the detailed brand and landing-page specification.
 
 The interface should follow Apple’s Human Interface Guidelines and feel completely native to iPhone Duo. The challenge screen remains intentionally minimal, with a short instruction such as **“Match the fold”**, a live visualization of the Duo’s current physical position, a ghosted representation of the target fold, and subtle progress information showing how many movements remain.
 
-The live device visualization should continuously mirror the real hinge angle so that when the user folds the physical device, the on-screen model moves with it in real time. **The interface must also show the phone’s current hinge angle numerically and update that value live as the user bends the device (for example: 54° → 55° → 56°). This live angle readout is a required part of the interaction, not optional debug information.** Rather than requiring the user to understand what a numerical angle such as 68° looks like, the primary interaction is simply to visually align the live device shape with the ghosted target shape.
+The primary angle visualization should be a **semicircle protractor/ring representing the full 0°–180° hinge range**. A solid needle represents the Duo’s current hinge angle and moves continuously as the user physically bends the phone. A ghosted target needle represents the requested angle, and the ±3° accepted range appears as a subtle highlighted arc around that target. **The interface must also show the phone’s current hinge angle numerically and update that value live as the user bends the device (for example: 54° → 55° → 56°). This live angle readout is a required part of the interaction, not optional debug information.** Rather than requiring the user to estimate what a numerical angle such as 68° looks like, the primary interaction is to move the live protractor needle into the ghosted target zone. The large numeric current-angle readout should remain visible inside the ring throughout the movement.
 
-As the user approaches the target, the interface should gradually communicate proximity without becoming distracting. When the current hinge angle is still far from the target, the visualization remains neutral. As the device approaches the valid range, subtle visual feedback can increase. Once the user reaches the **±3° tolerance**, the target and live representation should visually snap into alignment while a precise haptic confirms the step.
+As the user approaches the target, the interface should gradually communicate proximity without becoming distracting. When the current hinge angle is still far from the target, the visualization remains neutral. As the device approaches the valid range, subtle visual feedback can increase. Once the user reaches the **±3° tolerance**, the live needle enters the highlighted target segment, the protractor should visibly lock/confirm the match, and a precise haptic confirms the step.
 
 A hold challenge should use a simple progress indicator that begins filling only while the user remains inside the valid range. If the user drifts outside it, progress should pause rather than immediately fail. Completed steps should transition smoothly into the next target without unnecessary screens or buttons. After the final movement, the interface should display a brief native success state such as **“Human Verified”** and automatically return the user to the requesting app or website.
 
