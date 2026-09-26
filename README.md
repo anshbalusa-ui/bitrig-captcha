@@ -10,7 +10,7 @@ The app opens on a dedicated **HUMAN** landing page instead of dropping directly
 - line: **“Your phone is the challenge.”**
 - fold-reactive logo whose center hinge mark mirrors the real Duo angle
 - native Liquid Glass presentation
-- live fold visualization
+- **protractor-style semicircle hinge visualizer** with a live needle, target needle, and target tolerance band
 - **live numeric hinge angle that changes on-screen as the phone is physically bent**
 - “Bend to begin” interaction
 - automatic transition into verification after a meaningful real hinge movement
@@ -37,7 +37,7 @@ The app reads the Duo's real hinge angle continuously, gives native haptic feedb
 - 50 ms hold sampling
 - trajectory recording and ordered validation
 - native haptics
-- live fold visualization that mirrors the device angle
+- protractor-style semicircle visualizer that maps the full 0°–180° hinge range and updates live
 - ghosted target fold
 - iPhone Duo reserved-region awareness
 - native SwiftUI Liquid Glass
@@ -110,7 +110,7 @@ Use **Xcode 27.1 beta or newer** with the iPhone Duo simulator/runtime installed
 2. Choose an iPhone Duo simulator.
 3. Run the app.
 4. Change the Duo pose/hinge angle in Simulator.
-5. The live fold line should move with the physical simulator hinge.
+5. The protractor needle and numeric angle should move live with the physical simulator hinge.
 
 On a normal non-Duo simulator, the DEBUG build also shows a hinge slider so the flow can still be tested.
 
