@@ -118,7 +118,7 @@ struct LandingView: View {
             HStack {
                 Label(
                     "Live hinge",
-                    systemImage: "angle"
+                    systemImage: "ruler"
                 )
                 .font(.subheadline.bold())
 
