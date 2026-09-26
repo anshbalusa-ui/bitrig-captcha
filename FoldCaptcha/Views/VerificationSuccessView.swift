@@ -21,21 +21,33 @@ struct VerificationSuccessView: View {
             Text("Human Verified")
                 .font(.title2.bold())
 
-            Text("Returning…")
+            Text("Verification expires in 30 seconds")
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
+
+            Text(
+                String(result.token.prefix(8)).uppercased()
+            )
+            .font(
+                .caption
+                    .monospaced()
+            )
+            .foregroundStyle(.tertiary)
+            .accessibilityLabel("Temporary verification token issued")
 
             Button(
                 "Run again",
                 action: restart
             )
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.glassProminent)
             .padding(.top, 8)
         }
         .padding(32)
-        .background(
-            .ultraThinMaterial,
+        .frame(maxWidth: 420)
+        .glassEffect(
+            .regular,
             in: RoundedRectangle(
-                cornerRadius: 28,
+                cornerRadius: 30,
                 style: .continuous
             )
         )
