@@ -12,11 +12,11 @@ The main screen should contain:
 - instruction: **Match the fold** or **Hold here**
 - ghosted target fold shape
 - live current fold shape
-- optional numeric angle as secondary information
+- **live numeric current-angle readout that updates continuously while the phone is being bent; this is required, not optional**
 - tiny step progress indicator such as **● ● ○**
 - short status text such as **Getting close**, **Matched**, or **Hold steady**
 
-The live fold visualization is the hero. It should mirror the physical Duo continuously as the user moves the hinge. The target visualization should appear as a translucent or ghosted reference shape behind or alongside the live state.
+The live fold visualization is the hero. It should mirror the physical Duo continuously as the user moves the hinge. **Directly alongside the visualization, show the current measured hinge angle in degrees and update it in real time with every hinge change so the user can literally watch the number change while bending the phone.** The target visualization should appear as a translucent or ghosted reference shape behind or alongside the live state.
 
 The user should not need to understand what “68°” looks like. The intended behavior is simply: **make the real phone match the ghosted phone.**
 
