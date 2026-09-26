@@ -6,7 +6,6 @@ struct FoldCaptchaApp: App {
         WindowGroup {
             ChallengeView(
                 viewModel: ChallengeViewModel(
-                    hingeService: SimulatorHingeService(),
                     challengeGenerator: ChallengeGenerator(),
                     validator: TrajectoryValidator(),
                     haptics: HapticService()
