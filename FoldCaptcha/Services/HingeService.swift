@@ -1,57 +1,56 @@
 import Foundation
+import SwiftUI
 
-protocol HingeService: AnyObject {
-    var onAngleChange: (@MainActor (Double) -> Void)? { get set }
+/// One normalized iPhone Duo hinge reading.
+///
+/// The actual hardware value comes from SwiftUI's DeviceHinge API through
+/// View.onHingeChange. Keeping a tiny model here makes the rest of the app
+/// independent from the UI framework callback shape.
+struct HingeReading: Equatable, Sendable {
+    let angle: Double?
+    let timestamp: Date
 
-    func start()
-    func stop()
+    var isAvailable: Bool {
+        angle != nil
+    }
 }
 
-/// Development provider used until the real iPhone Duo hinge API is wired.
+/// Bridges Apple's iPhone Duo SwiftUI hinge API into the app.
 ///
-/// Keep the rest of the project dependent on HingeService rather than directly
-/// on the hardware API. Bitrig can then add a production Duo implementation
-/// without changing the challenge state machine or UI.
-final class SimulatorHingeService: HingeService {
-    var onAngleChange: (@MainActor (Double) -> Void)?
+/// Xcode 27.1 / iOS 27.1:
+/// - View.onHingeChange delivers DeviceHingeContext updates.
+/// - DeviceHinge.angle is a SwiftUI Angle.
+/// - Angle.degrees gives the continuous hinge angle in degrees.
+///
+/// A nil hinge means this view hierarchy currently has no hinge available.
+private struct DuoHingeReaderModifier: ViewModifier {
+    let onReading: @MainActor (HingeReading) -> Void
 
-    private var timer: Timer?
-    private var angle: Double = 120
-    private var direction: Double = -1
+    func body(content: Content) -> some View {
+        content
+            .onHingeChange { _, newContext in
+                let degrees = newContext.hinge?.angle.degrees
+                let reading = HingeReading(
+                    angle: degrees,
+                    timestamp: Date()
+                )
 
-    func start() {
-        stop()
-
-        timer = Timer.scheduledTimer(
-            withTimeInterval: 0.05,
-            repeats: true
-        ) { [weak self] _ in
-            guard let self else { return }
-
-            angle += direction * 1.5
-
-            if angle <= 40 {
-                angle = 40
-                direction = 1
-            } else if angle >= 160 {
-                angle = 160
-                direction = -1
+                Task { @MainActor in
+                    onReading(reading)
+                }
             }
-
-            let updatedAngle = angle
-
-            Task { @MainActor [weak self] in
-                self?.onAngleChange?(updatedAngle)
-            }
-        }
     }
+}
 
-    func stop() {
-        timer?.invalidate()
-        timer = nil
-    }
-
-    deinit {
-        timer?.invalidate()
+extension View {
+    /// Starts continuous iPhone Duo hinge tracking for this view hierarchy.
+    func trackDuoHinge(
+        onReading: @escaping @MainActor (HingeReading) -> Void
+    ) -> some View {
+        modifier(
+            DuoHingeReaderModifier(
+                onReading: onReading
+            )
+        )
     }
 }
