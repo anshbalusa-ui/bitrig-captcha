@@ -14,6 +14,7 @@ The app reads the Duo's real hinge angle continuously, gives native haptic feedb
 
 - Apple's real SwiftUI `DeviceHinge` / `onHingeChange` API
 - continuous hinge-angle readings in degrees
+- **live on-screen current-angle readout that updates continuously as the phone is physically bent**
 - 3-step randomized challenges
 - default ±3° tolerance
 - optional hold step
