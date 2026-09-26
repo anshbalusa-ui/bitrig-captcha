@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">HUMAN logo</title>
+  <desc id="desc">The word HUMAN split by a folding hinge mark.</desc>
+  <rect width="720" height="180" fill="none"/>
+  <g fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M330 106 L360 106 L390 72"/>
+  </g>
+  <g fill="currentColor" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" font-size="78" font-weight="700" letter-spacing="4">
+    <text x="58" y="125">HU</text>
+    <text x="420" y="125">MAN</text>
+  </g>
+</svg>
