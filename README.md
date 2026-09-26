@@ -1,81 +1,128 @@
 # Bitrig CAPTCHA
 
-A physical CAPTCHA concept built specifically for iPhone Duo.
+A native physical CAPTCHA built specifically for **iPhone Duo**.
 
-Instead of solving image puzzles, users verify human presence by completing a short randomized sequence of physical fold gestures such as:
+Traditional CAPTCHAs ask the user to recognize images or type text. This project turns the **physical fold of the device itself into the challenge**.
+
+A randomized verification can look like:
 
 **68° → 121° → hold at 47°**
 
-The experience tracks the hinge continuously, uses forgiving angle tolerances, validates the full motion trajectory, confirms each step with native haptics, and returns a short-lived verification result to the requesting experience.
+The app reads the Duo's real hinge angle continuously, gives native haptic feedback, validates the ordered motion trajectory with a forgiving **±3° tolerance**, and produces a short-lived human-presence result.
 
-## Core interaction
+## What is already implemented
 
-1. An app or website requests verification.
-2. A short randomized fold sequence is generated.
-3. The challenge UI shows a ghosted target fold and a live representation of the current device fold.
-4. The user physically folds the Duo to match each target.
-5. A target is accepted inside a forgiving default tolerance of **±3°**.
-6. Haptics confirm successful steps.
-7. Hold steps require the device to remain inside the accepted range briefly.
-8. The complete motion trajectory is validated in order.
-9. A short-lived human-presence result is returned.
+- Apple's real SwiftUI `DeviceHinge` / `onHingeChange` API
+- continuous hinge-angle readings in degrees
+- 3-step randomized challenges
+- default ±3° tolerance
+- optional hold step
+- 50 ms hold sampling
+- trajectory recording and ordered validation
+- native haptics
+- live fold visualization that mirrors the device angle
+- ghosted target fold
+- iPhone Duo reserved-region awareness
+- native SwiftUI Liquid Glass
+- step progress + retry + success states
+- short-lived verification token model
+- DEBUG hinge slider for a non-Duo simulator
+- optional demo backend that generates challenges and verifies trajectories server-side
+- optional Swift client for that backend
 
-## UI direction
+## Verified Apple APIs
 
-The UI should feel native, minimal, and Apple-like rather than like a traditional CAPTCHA.
+The Duo integration uses APIs Apple currently documents for iOS 27.1 / Xcode 27.1 beta:
 
-- System typography and SF Symbols
-- Restrained glassmorphic / frosted-material presentation
-- Ghosted target fold + live current-fold visualization
-- Numeric angles are secondary, not required to understand the interaction
-- Subtle proximity feedback
-- Crisp haptics when a target is reached
-- Stronger success haptic after the full challenge
-- Hold progress pauses rather than harshly failing if the user drifts outside the range
-- Dynamic Type and VoiceOver support
-- Layouts that respect safe areas and reserved hinge regions
+- `DeviceHinge`
+- `DeviceHingeContext`
+- `View.onHingeChange(isEnabled:_:)`
+- `GeometryProxy.reservedRegions(kind:)`
+- `View.glassEffect(_:in:)`
 
-## Proposed project structure
+See `docs/APPLE_API_NOTES.md`.
+
+## Project structure
 
 ```text
-FoldCaptcha/
-├── App/
-│   └── FoldCaptchaApp.swift
-├── Models/
-│   ├── FoldChallenge.swift
-│   └── VerificationResult.swift
-├── Services/
-│   ├── HingeService.swift
-│   ├── HapticService.swift
-│   ├── ChallengeGenerator.swift
-│   └── TrajectoryValidator.swift
-├── ViewModels/
-│   └── ChallengeViewModel.swift
-└── Views/
-    ├── ChallengeView.swift
-    ├── FoldVisualizer.swift
-    └── VerificationSuccessView.swift
+bitrig-captcha/
+├── FoldCaptcha.xcodeproj/
+│   └── project.pbxproj
+├── FoldCaptcha/
+│   ├── App/
+│   │   └── FoldCaptchaApp.swift
+│   ├── Models/
+│   │   ├── FoldChallenge.swift
+│   │   └── VerificationResult.swift
+│   ├── Services/
+│   │   ├── ChallengeGenerator.swift
+│   │   ├── HapticService.swift
+│   │   ├── HingeService.swift
+│   │   ├── RemoteVerificationClient.swift
+│   │   └── TrajectoryValidator.swift
+│   ├── ViewModels/
+│   │   └── ChallengeViewModel.swift
+│   └── Views/
+│       ├── ChallengeView.swift
+│       ├── DebugHingeControls.swift
+│       ├── FoldVisualizer.swift
+│       └── VerificationSuccessView.swift
+├── backend/
+│   ├── package.json
+│   └── server.mjs
+└── docs/
+    ├── APPLE_API_NOTES.md
+    ├── ARCHITECTURE.md
+    ├── BITRIG_PLAN_PROMPT.md
+    ├── PRODUCT_SPEC.md
+    ├── SECURITY_NOTES.md
+    └── UI_SPEC.md
 ```
 
-## Build priorities
+## Run the iOS app
 
-1. Real-time Duo hinge-angle input
-2. Challenge state machine
-3. ±3° tolerance + hold timing
-4. Live fold visualizer
-5. Haptics
-6. Motion-trajectory validation
-7. Success / verification result flow
-8. Glassmorphic polish and accessibility
+Use **Xcode 27.1 beta or newer** with the iPhone Duo simulator/runtime installed.
 
-## Hackathon demo goal
+1. Open `FoldCaptcha.xcodeproj`.
+2. Choose an iPhone Duo simulator.
+3. Run the app.
+4. Change the Duo pose/hinge angle in Simulator.
+5. The live fold line should move with the physical simulator hinge.
 
-The full idea should be understandable in seconds:
+On a normal non-Duo simulator, the DEBUG build also shows a hinge slider so the flow can still be tested.
 
-> “Traditional CAPTCHAs ask you to solve something on the screen. Ours makes the physical device itself the challenge.”
+## Run the optional backend
 
-Ideal live demo:
+No npm dependencies are required.
 
-**68° → 121° → hold at 47° → Human Verified**
+```bash
+cd backend
+npm start
+```
 
-See `docs/PRODUCT_SPEC.md` for the full product specification and `docs/BITRIG_PLAN_PROMPT.md` for a ready-to-paste Bitrig planning prompt.
+It runs on `http://localhost:8787` by default.
+
+Endpoints:
+
+- `POST /api/challenge`
+- `POST /api/verify`
+
+The backend is intentionally small and in-memory for the hackathon. Read `docs/SECURITY_NOTES.md` before treating it like production security.
+
+## Core demo
+
+The entire idea should be understandable in a few seconds:
+
+> “Traditional CAPTCHAs make you solve something on the screen. Ours makes the physical device itself the challenge.”
+
+Then:
+
+**68° → 121° → hold 47° → Human Verified**
+
+## Bitrig
+
+Read the specs first, then use the planning prompt in:
+
+`docs/BITRIG_PLAN_PROMPT.md`
+
+The codebase is already scaffolded, so Bitrig should focus on compiling against the installed iOS 27.1 SDK, polishing the interaction, and testing on the Duo simulator rather than rebuilding the architecture from scratch.
