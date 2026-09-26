@@ -6,37 +6,36 @@ final class ChallengeViewModel: ObservableObject {
     enum Phase: Equatable {
         case active
         case verified(VerificationResult)
+        case retryNeeded
     }
 
     @Published private(set) var challenge: FoldChallenge
     @Published private(set) var currentIndex: Int = 0
     @Published private(set) var currentAngle: Double = 120
+    @Published private(set) var hingeAvailable = false
     @Published private(set) var holdProgress: Double = 0
     @Published private(set) var phase: Phase = .active
 
-    private var hingeService: HingeService
     private let challengeGenerator: ChallengeGenerator
     private var validator: TrajectoryValidator
     private let haptics: HapticService
 
     private var enteredTolerance = false
-    private var holdStart: Date?
+    private var holdTask: Task<Void, Never>?
 
     init(
-        hingeService: HingeService,
         challengeGenerator: ChallengeGenerator,
         validator: TrajectoryValidator,
         haptics: HapticService
     ) {
-        self.hingeService = hingeService
         self.challengeGenerator = challengeGenerator
         self.validator = validator
         self.haptics = haptics
         self.challenge = challengeGenerator.makeChallenge()
+    }
 
-        self.hingeService.onAngleChange = { [weak self] angle in
-            self?.receive(angle: angle)
-        }
+    deinit {
+        holdTask?.cancel()
     }
 
     var currentTarget: FoldTarget? {
@@ -70,35 +69,77 @@ final class ChallengeViewModel: ObservableObject {
         )
     }
 
-    func start() {
-        haptics.prepare()
-        hingeService.start()
+    var recordedSamples: [HingeSample] {
+        validator.samples
     }
 
-    func stop() {
-        hingeService.stop()
+    func prepare() {
+        haptics.prepare()
+    }
+
+    func receiveHingeReading(
+        _ reading: HingeReading
+    ) {
+        hingeAvailable = reading.isAvailable
+
+        guard let angle = reading.angle else {
+            cancelHold(resetProgress: true)
+            return
+        }
+
+        processAngle(
+            angle,
+            timestamp: reading.timestamp
+        )
+    }
+
+    /// Used only for previews and fallback debugging on a non-Duo simulator.
+    func receiveDebugAngle(
+        _ angle: Double
+    ) {
+        hingeAvailable = true
+        processAngle(
+            angle,
+            timestamp: Date()
+        )
     }
 
     func restart() {
+        holdTask?.cancel()
+        holdTask = nil
+
         challenge = challengeGenerator.makeChallenge()
         currentIndex = 0
         holdProgress = 0
         phase = .active
         enteredTolerance = false
-        holdStart = nil
         validator.reset()
+
+        haptics.prepare()
     }
 
-    private func receive(angle: Double) {
-        guard
-            case .active = phase,
-            let target = currentTarget
-        else {
+    private func processAngle(
+        _ rawAngle: Double,
+        timestamp: Date
+    ) {
+        guard case .active = phase else {
             return
         }
 
+        let angle = min(
+            max(rawAngle, 0),
+            180
+        )
+
         currentAngle = angle
-        validator.record(angle: angle)
+        validator.record(
+            angle: angle,
+            at: timestamp
+        )
+
+        guard let target = currentTarget else {
+            return
+        }
 
         let inside = validator.isInside(
             target,
@@ -107,68 +148,132 @@ final class ChallengeViewModel: ObservableObject {
 
         if inside && !enteredTolerance {
             enteredTolerance = true
-            haptics.enteredTolerance()
-        } else if !inside {
-            enteredTolerance = false
+
+            if target.requiresHold {
+                haptics.enteredTolerance()
+                beginHold(for: target)
+            }
         }
 
-        if target.requiresHold {
-            updateHold(
-                for: target,
-                inside: inside
-            )
-        } else if inside {
+        if !inside {
+            enteredTolerance = false
+
+            if target.requiresHold {
+                cancelHold(resetProgress: true)
+            }
+        }
+
+        if inside && !target.requiresHold {
             completeCurrentStep()
         }
     }
 
-    private func updateHold(
-        for target: FoldTarget,
-        inside: Bool
+    private func beginHold(
+        for target: FoldTarget
     ) {
-        guard inside else {
-            holdStart = nil
+        guard holdTask == nil else {
+            return
+        }
+
+        let targetID = target.id
+        let startedAt = Date()
+
+        holdTask = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(
+                    for: .milliseconds(50)
+                )
+
+                guard let self else {
+                    return
+                }
+
+                guard
+                    case .active = self.phase,
+                    self.currentTarget?.id == targetID,
+                    self.isInsideTolerance
+                else {
+                    self.cancelHold(
+                        resetProgress: true
+                    )
+                    return
+                }
+
+                // Sample during a steady hold too, not only while the hinge is
+                // physically moving. This lets local/server validation prove
+                // the requested hold duration happened continuously.
+                self.validator.record(
+                    angle: self.currentAngle,
+                    at: Date()
+                )
+
+                let elapsed = Date().timeIntervalSince(
+                    startedAt
+                )
+
+                self.holdProgress = min(
+                    elapsed / target.holdDuration,
+                    1
+                )
+
+                if self.holdProgress >= 1 {
+                    self.holdTask = nil
+                    self.completeCurrentStep()
+                    return
+                }
+            }
+        }
+    }
+
+    private func cancelHold(
+        resetProgress: Bool
+    ) {
+        holdTask?.cancel()
+        holdTask = nil
+
+        if resetProgress {
             holdProgress = 0
-            return
-        }
-
-        if holdStart == nil {
-            holdStart = Date()
-        }
-
-        guard let holdStart else {
-            return
-        }
-
-        let elapsed = Date().timeIntervalSince(holdStart)
-        holdProgress = min(
-            elapsed / target.holdDuration,
-            1
-        )
-
-        if holdProgress >= 1 {
-            completeCurrentStep()
         }
     }
 
     private func completeCurrentStep() {
-        haptics.completedStep()
+        guard
+            case .active = phase,
+            let target = currentTarget,
+            validator.isInside(
+                target,
+                angle: currentAngle
+            )
+        else {
+            return
+        }
 
+        validator.markTargetCompleted(
+            index: currentIndex,
+            angle: currentAngle
+        )
+
+        cancelHold(resetProgress: true)
         enteredTolerance = false
-        holdStart = nil
-        holdProgress = 0
 
-        if currentIndex + 1 < challenge.targets.count {
+        let isFinalStep =
+            currentIndex + 1 >= challenge.targets.count
+
+        if !isFinalStep {
+            haptics.completedStep()
             currentIndex += 1
             return
         }
 
-        let result = VerificationResult.success(
-            for: challenge
-        )
+        if validator.validates(challenge: challenge) {
+            let result = VerificationResult.success(
+                for: challenge
+            )
 
-        phase = .verified(result)
-        haptics.success()
-        hingeService.stop()
+            phase = .verified(result)
+            haptics.success()
+        } else {
+            phase = .retryNeeded
+        }
     }
 }
