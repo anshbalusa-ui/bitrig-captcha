@@ -1,18 +1,30 @@
 # Bitrig Planning Prompt
 
-Paste the following into Bitrig `/plan`:
+The core architecture and starter implementation are already in this repository. Use Bitrig to verify, debug, and polish it rather than rebuilding the project from scratch.
 
-> Read `README.md`, `docs/PRODUCT_SPEC.md`, `docs/UI_SPEC.md`, and `docs/ARCHITECTURE.md`. Create a concrete implementation plan for this iPhone Duo hackathon prototype. Prioritize getting real-time Duo hinge tracking and the core challenge state machine working first. Then implement the live fold visualizer, ±3° tolerance, hold timing, trajectory validation, native haptics, restrained glassmorphic UI, accessibility, and the final short-lived verification-result flow. Keep the implementation optimized for a polished sub-3-minute hackathon demo. Preserve a clean separation between hinge input, challenge generation, validation, haptics, view-model state, and SwiftUI views. Use a simulator/mock hinge provider until the real Duo hinge API is wired so UI and logic can be tested independently. Do not add unrelated features, AI, monetization, accounts, dashboards, or extra product scope.
+Paste this into Bitrig `/plan`:
 
-## Build order
+> Read `README.md`, `docs/PRODUCT_SPEC.md`, `docs/UI_SPEC.md`, `docs/ARCHITECTURE.md`, `docs/APPLE_API_NOTES.md`, and the existing Swift source. First build the current `FoldCaptcha.xcodeproj` with Xcode 27.1 and the iPhone Duo simulator. Fix any beta-SDK signature changes against the installed SDK rather than replacing the architecture. Verify that `View.onHingeChange` continuously drives the live fold visualization using `DeviceHinge.angle.degrees`. Then test the randomized three-step sequence, ±3° tolerance, 0.75 s hold behavior, 50 ms hold sampling, trajectory validation, native haptics, reserved-region layout behavior, Liquid Glass UI, accessibility, retry state, and short-lived verification result. Keep the experience optimized for a polished sub-3-minute hackathon demo. Do not add unrelated AI, monetization, accounts, dashboards, or extra product scope.
 
-1. Verify the current iPhone Duo SDK/API names in the installed Xcode/Bitrig environment.
-2. Wire continuous real hinge-angle updates behind `HingeService`.
-3. Build the randomized three-step challenge generator.
-4. Build the challenge state machine with ±3° tolerance.
-5. Implement hold timing.
-6. Build live/ghost fold visualization.
-7. Add haptics.
-8. Record and validate the full trajectory.
-9. Add success + short-lived verification result.
-10. Polish glassmorphic UI, transitions, accessibility, and the sub-3-minute demo flow.
+## Recommended order
+
+1. Open/build `FoldCaptcha.xcodeproj` in Xcode 27.1.
+2. Run on the iPhone Duo simulator.
+3. Confirm `onHingeChange` receives real simulator pose/hinge updates.
+4. Confirm live and ghost fold geometry visually match the physical pose.
+5. Tune challenge angle range if the simulator/device has practical limits.
+6. Tune ±3° tolerance only if physical testing shows it is too strict/loose.
+7. Test hold timing while the hinge remains steady.
+8. Confirm haptics on real hardware when available.
+9. Confirm active reserved regions do not obstruct text or controls.
+10. Polish transitions and the success animation.
+11. Optionally run `backend/server.mjs` and exercise the remote verification client.
+12. Rehearse the final 30–60 second interaction inside the sub-3-minute demo.
+
+## Demo target
+
+A judge should understand the entire project immediately:
+
+**68° → 121° → hold 47° → Human Verified**
+
+The physical fold is the product. Keep everything else quiet and native.
