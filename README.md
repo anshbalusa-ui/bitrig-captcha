@@ -2,6 +2,22 @@
 
 A native physical CAPTCHA built specifically for **iPhone Duo**.
 
+## HUMAN landing experience
+
+The app opens on a dedicated **HUMAN** landing page instead of dropping directly into the CAPTCHA.
+
+- brand: **HUMAN**
+- line: **“Your phone is the challenge.”**
+- fold-reactive logo whose center hinge mark mirrors the real Duo angle
+- native Liquid Glass presentation
+- live fold visualization
+- **live numeric hinge angle that changes on-screen as the phone is physically bent**
+- “Bend to begin” interaction
+- automatic transition into verification after a meaningful real hinge movement
+- “Start verification” accessibility/simulator fallback
+
+The logo is implemented natively in `FoldCaptcha/Brand/HumanLogo.swift` and a vector reference asset is included at `BrandAssets/human-logo.svg`.
+
 Traditional CAPTCHAs ask the user to recognize images or type text. This project turns the **physical fold of the device itself into the challenge**.
 
 A randomized verification can look like:
@@ -49,9 +65,13 @@ See `docs/APPLE_API_NOTES.md`.
 bitrig-captcha/
 ├── FoldCaptcha.xcodeproj/
 │   └── project.pbxproj
+├── BrandAssets/
+│   └── human-logo.svg
 ├── FoldCaptcha/
 │   ├── App/
 │   │   └── FoldCaptchaApp.swift
+│   ├── Brand/
+│   │   └── HumanLogo.swift
 │   ├── Models/
 │   │   ├── FoldChallenge.swift
 │   │   └── VerificationResult.swift
@@ -65,6 +85,8 @@ bitrig-captcha/
 │   │   └── ChallengeViewModel.swift
 │   └── Views/
 │       ├── ChallengeView.swift
+│       ├── LandingView.swift
+│       ├── RootView.swift
 │       ├── DebugHingeControls.swift
 │       ├── FoldVisualizer.swift
 │       └── VerificationSuccessView.swift
