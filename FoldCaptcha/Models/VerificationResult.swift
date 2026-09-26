@@ -1,8 +1,9 @@
 import Foundation
 
-struct VerificationResult: Identifiable, Equatable, Sendable {
+struct VerificationResult: Identifiable, Equatable, Codable, Sendable {
     let id: UUID
     let challengeID: UUID
+    let token: String
     let verifiedAt: Date
     let expiresAt: Date
 
@@ -19,6 +20,7 @@ struct VerificationResult: Identifiable, Equatable, Sendable {
         return VerificationResult(
             id: UUID(),
             challengeID: challenge.id,
+            token: UUID().uuidString,
             verifiedAt: now,
             expiresAt: now.addingTimeInterval(lifetime)
         )
