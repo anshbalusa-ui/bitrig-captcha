@@ -6,6 +6,27 @@ This product is a physical CAPTCHA designed specifically for iPhone Duo. When an
 
 Each target uses a forgiving tolerance range, such as **±3°**, so the user never needs to position the device with unrealistic precision. Once the device enters the valid range, the system confirms the step through immediate visual and haptic feedback and automatically advances to the next movement. Hold challenges require the user to remain within the tolerance range briefly before completing the step. The entire interaction should take only a few seconds and feel like physically manipulating the device rather than completing a traditional CAPTCHA.
 
+## Landing experience
+
+The app should open on a dedicated **HUMAN** landing page before the verification challenge begins. The landing page introduces the interaction visually rather than through onboarding text.
+
+Required landing elements:
+
+- **HUMAN** fold-reactive logo
+- tagline: **“Your phone is the challenge.”**
+- native Liquid Glass surface
+- live fold visualization
+- **live numeric hinge angle that continuously updates while the phone is physically bent**
+- instruction: **“Bend to begin”**
+- automatic transition into the CAPTCHA after a meaningful real hinge movement
+- visible **Start verification** fallback for accessibility and non-Duo simulator testing
+
+The HUMAN logo should itself respond to the Duo hinge: the small fold mark between “HU” and “MAN” mirrors the current physical hinge angle. This makes the branding demonstrate the product’s core interaction before the challenge starts.
+
+The first actual hardware hinge reading should establish the landing page’s baseline angle. The app should only auto-start after the user subsequently changes the hinge by a meaningful amount (roughly 12°), avoiding accidental startup caused by the first sensor update.
+
+See `docs/BRAND.md` for the detailed brand and landing-page specification.
+
 ## UI and interaction design
 
 The interface should follow Apple’s Human Interface Guidelines and feel completely native to iPhone Duo. The challenge screen remains intentionally minimal, with a short instruction such as **“Match the fold”**, a live visualization of the Duo’s current physical position, a ghosted representation of the target fold, and subtle progress information showing how many movements remain.
