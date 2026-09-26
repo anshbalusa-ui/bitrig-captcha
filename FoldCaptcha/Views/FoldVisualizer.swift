@@ -1,5 +1,10 @@
 import SwiftUI
 
+/// Draws a side profile of the folding device.
+///
+/// The left half stays horizontal. The right half rotates using the actual
+/// hinge angle so 180° appears flat and 90° appears upright. The target is
+/// rendered as a ghost behind the live position.
 struct FoldVisualizer: View {
     let currentAngle: Double
     let targetAngle: Double
@@ -7,103 +12,121 @@ struct FoldVisualizer: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let width = min(
+            let size = min(
                 proxy.size.width,
-                proxy.size.height * 1.7
+                proxy.size.height * 1.75
             )
 
             ZStack {
-                foldShape(
+                hingeShape(
                     angle: targetAngle,
-                    width: width
+                    size: size
                 )
                 .stroke(
-                    .secondary.opacity(0.30),
+                    .secondary.opacity(0.28),
                     style: StrokeStyle(
-                        lineWidth: 8,
+                        lineWidth: 10,
                         lineCap: .round,
-                        lineJoin: .round
+                        lineJoin: .round,
+                        dash: [12, 10]
                     )
                 )
 
-                foldShape(
+                hingeShape(
                     angle: currentAngle,
-                    width: width
+                    size: size
                 )
                 .stroke(
                     isInsideTolerance
                         ? Color.accentColor
                         : Color.primary,
                     style: StrokeStyle(
-                        lineWidth: 7,
+                        lineWidth: 8,
                         lineCap: .round,
                         lineJoin: .round
                     )
                 )
                 .animation(
                     .interactiveSpring(
-                        response: 0.20,
-                        dampingFraction: 0.90
+                        response: 0.18,
+                        dampingFraction: 0.92
                     ),
                     value: currentAngle
                 )
+
+                hingeDot(size: size)
             }
             .frame(
                 maxWidth: .infinity,
                 maxHeight: .infinity
             )
-            .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Fold position")
-            .accessibilityValue(
-                "Current angle \(Int(currentAngle.rounded())) degrees. Target \(Int(targetAngle.rounded())) degrees."
-            )
         }
         .aspectRatio(
-            1.7,
+            1.75,
             contentMode: .fit
+        )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Fold position")
+        .accessibilityValue(
+            "Current angle \(Int(currentAngle.rounded())) degrees. Target \(Int(targetAngle.rounded())) degrees."
         )
     }
 
-    private func foldShape(
+    private func hingeShape(
         angle: Double,
-        width: CGFloat
+        size: CGFloat
     ) -> Path {
         let clamped = min(
-            max(angle, 35),
-            170
+            max(angle, 0),
+            180
         )
 
-        let normalized = CGFloat(
-            (clamped - 35) / 135
+        let center = CGPoint(
+            x: size * 0.50,
+            y: size * 0.44
         )
 
-        let bend = (1 - normalized) * width * 0.23
+        let halfLength = size * 0.34
+
+        // 180° => flat to the right.
+        // 90°  => vertical upward.
+        // 0°   => folded back toward the left.
+        let theta = CGFloat(
+            (180 - clamped) * .pi / 180
+        )
+
+        let rightEnd = CGPoint(
+            x: center.x + cos(theta) * halfLength,
+            y: center.y - sin(theta) * halfLength
+        )
 
         return Path { path in
-            let y = width * 0.34
-            let centerX = width * 0.5
-            let half = width * 0.34
-
             path.move(
                 to: CGPoint(
-                    x: centerX - half,
-                    y: y
+                    x: center.x - halfLength,
+                    y: center.y
                 )
             )
 
-            path.addLine(
-                to: CGPoint(
-                    x: centerX,
-                    y: y
-                )
-            )
-
-            path.addLine(
-                to: CGPoint(
-                    x: centerX + half,
-                    y: y - bend
-                )
-            )
+            path.addLine(to: center)
+            path.addLine(to: rightEnd)
         }
+    }
+
+    @ViewBuilder
+    private func hingeDot(
+        size: CGFloat
+    ) -> some View {
+        Circle()
+            .fill(.primary)
+            .frame(
+                width: 10,
+                height: 10
+            )
+            .position(
+                x: size * 0.50,
+                y: size * 0.44
+            )
+            .accessibilityHidden(true)
     }
 }
