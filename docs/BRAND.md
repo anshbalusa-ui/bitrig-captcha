@@ -33,12 +33,12 @@ On first open, the user sees:
 - HUMAN logo
 - “Your phone is the challenge.”
 - central frosted/Liquid Glass surface
-- live Duo fold visualization
+- **live semicircle protractor/ring showing the Duo hinge from 0°–180°**
 - **live current hinge angle in degrees**
 - “Bend to begin”
 - accessibility fallback button: “Start verification”
 
-The numeric angle must update continuously while the Duo is physically being bent.
+The landing visual should use the same protractor language as the challenge: a semicircle ring, a live current-angle needle, and a large numeric angle that updates continuously while the Duo is physically being bent.
 
 Example:
 
