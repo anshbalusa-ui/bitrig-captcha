@@ -4,7 +4,7 @@ import SwiftUI
 struct FoldCaptchaApp: App {
     var body: some Scene {
         WindowGroup {
-            ChallengeView(
+            RootView(
                 viewModel: ChallengeViewModel(
                     challengeGenerator: ChallengeGenerator(),
                     validator: TrajectoryValidator(),
