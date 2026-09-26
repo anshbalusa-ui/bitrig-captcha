@@ -21,6 +21,7 @@
 		00000000000000000000002C /* DebugHingeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002B /* DebugHingeControls.swift */; };
 		00000000000000000000002E /* FoldVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002D /* FoldVisualizer.swift */; };
 		000000000000000000000030 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002F /* LandingView.swift */; };
+		000000000000000000000036 /* LandingHeroVisual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000035 /* LandingHeroVisual.swift */; };
 		000000000000000000000032 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000031 /* RootView.swift */; };
 		000000000000000000000034 /* VerificationSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000033 /* VerificationSuccessView.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		00000000000000000000002B /* DebugHingeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHingeControls.swift; sourceTree = "<group>"; };
 		00000000000000000000002D /* FoldVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldVisualizer.swift; sourceTree = "<group>"; };
 		00000000000000000000002F /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		000000000000000000000035 /* LandingHeroVisual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingHeroVisual.swift; sourceTree = "<group>"; };
 		000000000000000000000031 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		000000000000000000000033 /* VerificationSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSuccessView.swift; sourceTree = "<group>"; };
 		000000000000000000000003 /* FoldCaptcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoldCaptcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				00000000000000000000002B /* DebugHingeControls.swift */,
 				00000000000000000000002D /* FoldVisualizer.swift */,
 				00000000000000000000002F /* LandingView.swift */,
+				000000000000000000000035 /* LandingHeroVisual.swift */,
 				000000000000000000000031 /* RootView.swift */,
 				000000000000000000000033 /* VerificationSuccessView.swift */,
 			);
@@ -218,6 +221,7 @@
 				00000000000000000000002C /* DebugHingeControls.swift in Sources */,
 				00000000000000000000002E /* FoldVisualizer.swift in Sources */,
 				000000000000000000000030 /* LandingView.swift in Sources */,
+				000000000000000000000036 /* LandingHeroVisual.swift in Sources */,
 				000000000000000000000032 /* RootView.swift in Sources */,
 				000000000000000000000034 /* VerificationSuccessView.swift in Sources */,
 			);
