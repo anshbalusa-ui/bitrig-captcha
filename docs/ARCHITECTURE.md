@@ -7,40 +7,58 @@ Request verification
         ↓
 ChallengeGenerator
         ↓
-Random FoldChallenge
+Random 3-step FoldChallenge
         ↓
-HingeService streams live angle samples
+View.onHingeChange
         ↓
-ChallengeViewModel updates UI + state machine
+DeviceHinge.angle.degrees
         ↓
-TrajectoryValidator checks ordered motion + tolerance + holds
+ChallengeViewModel
         ↓
-HapticService confirms milestones
+TrajectoryValidator + hold timer
         ↓
-VerificationResult issued
+HapticService + SwiftUI UI
+        ↓
+VerificationResult
         ↓
 Return to requesting experience
 ```
 
-## Components
+## iPhone Duo hinge input
 
-### HingeService
+The app uses Apple's real SwiftUI hinge API in:
 
-Owns the live hinge-angle stream.
+`FoldCaptcha/Services/HingeService.swift`
 
-The initial project includes a simulator/mock implementation so UI and state-machine work can proceed before the real iPhone Duo hinge API is wired. The production Duo implementation should conform to the same interface.
+The view attaches:
 
-### ChallengeGenerator
+```swift
+.trackDuoHinge { reading in
+    viewModel.receiveHingeReading(reading)
+}
+```
 
-Generates a short randomized sequence of fold targets.
+The modifier is backed by:
 
-Recommended prototype behavior:
+```swift
+.onHingeChange { _, newContext in
+    let degrees = newContext.hinge?.angle.degrees
+    // forward normalized reading
+}
+```
 
-- 3 targets
-- target range roughly 45°–145°
-- about 25° minimum separation between consecutive targets
-- default tolerance **±3°**
-- final step may require a short hold
+A nil hinge means the current hierarchy has no hinge available. In DEBUG builds, a fallback slider is shown only when a real hinge is unavailable.
+
+## ChallengeGenerator
+
+Generates three randomized targets.
+
+Prototype defaults:
+
+- target angle range: 45°–145°
+- minimum separation: ~25°
+- tolerance: ±3°
+- final target hold: ~0.75 s
 
 Example:
 
@@ -48,65 +66,130 @@ Example:
 68° → 121° → hold at 47°
 ```
 
-### TrajectoryValidator
+## ChallengeViewModel
 
-Records continuous hinge samples and validates:
-
-- correct target order
-- entry into each target tolerance
-- required hold duration
-- continuous movement samples rather than only final submitted values
-- complete challenge completion
-
-For the hackathon, validation can be local. A production security system should not trust client-side validation by itself.
-
-### HapticService
-
-Centralizes:
-
-- tolerance-entry feedback
-- step-completion feedback
-- final success feedback
-
-### ChallengeViewModel
-
-Coordinates:
+Owns the interaction state machine:
 
 - current challenge
-- active target index
+- current target index
 - current hinge angle
-- tolerance state
-- hold timing/progress
+- hinge availability
+- tolerance entry
+- hold timer/progress
 - trajectory recording
-- haptics
-- verification success
+- step completion
+- retry/success state
+- haptic timing
 
-### VerificationResult
+Hold progress is sampled every 50 ms while the device remains within tolerance so a steady hold still creates continuous evidence.
 
-A successful prototype can emit a short-lived local result containing:
+## TrajectoryValidator
+
+Records timestamped hinge samples and target-completion points.
+
+The local validator checks:
+
+- all targets completed
+- correct order
+- completion angles were within tolerance
+- each later target happened after the prior target
+- there was real angular movement between target completions
+- the final challenge came from one continuous recorded interaction
+
+This is hackathon-grade local validation, not production anti-bot security.
+
+## HapticService
+
+Native UIKit feedback generators provide:
+
+- light tolerance-entry feedback for hold targets
+- medium step completion feedback
+- final success notification feedback
+
+No harsh failure haptic is used when a user drifts outside a hold range.
+
+## FoldVisualizer
+
+The visualization draws the real physical hinge geometry:
+
+- 180° = flat
+- 90° = right half upright
+- 0° = folded back toward the left
+
+The live hinge is drawn over a dashed/ghosted target so users can match shapes instead of interpreting numbers.
+
+## Duo-aware UI
+
+`ChallengeView` queries:
+
+```swift
+proxy.reservedRegions(kind: .division)
+```
+
+to stay aware of active fold division regions.
+
+The main challenge card uses native SwiftUI Liquid Glass:
+
+```swift
+.glassEffect(
+    .regular,
+    in: RoundedRectangle(
+        cornerRadius: 30,
+        style: .continuous
+    )
+)
+```
+
+## Verification result
+
+A successful local prototype issues a short-lived `VerificationResult` containing:
 
 - verification ID
 - challenge ID
+- random token
 - verified timestamp
 - expiration timestamp
-- success state
 
-A later server-backed version could exchange the successful challenge for a signed, short-lived token tied to the requesting session or action.
+Default lifetime: 30 seconds.
+
+## Optional server-backed flow
+
+The repository also contains:
+
+```text
+backend/server.mjs
+```
+
+The demo server can:
+
+1. generate randomized challenges
+2. keep them server-side for 60 seconds
+3. accept timestamped hinge samples
+4. validate the ordered trajectory
+5. enforce the hold target
+6. consume challenges once to reduce replay
+7. issue a signed short-lived verification token
+
+The matching Swift networking code is:
+
+`FoldCaptcha/Services/RemoteVerificationClient.swift`
+
+The default hackathon UI remains local so the core Duo interaction works even without a server.
 
 ## Separation of concerns
 
-Keep these layers separate:
-
 ```text
-hardware input
-    ↓
-hinge service
-    ↓
-state machine / validator
-    ↓
-view model
-    ↓
-SwiftUI presentation
+Apple hinge API
+      ↓
+HingeReading
+      ↓
+ChallengeViewModel
+   ↙          ↘
+validator    haptics
+      ↓
+SwiftUI / Liquid Glass
+      ↓
+verification result
 ```
 
-This makes it easy to use simulated hinge data during development and swap in the real Duo hinge source later.
+See `docs/SECURITY_NOTES.md` for the line between the hackathon prototype and a production security system.
