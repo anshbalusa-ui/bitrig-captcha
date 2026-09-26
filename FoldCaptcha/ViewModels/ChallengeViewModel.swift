@@ -176,7 +176,7 @@ final class ChallengeViewModel: ObservableObject {
 
         holdTask = Task { [weak self] in
             while !Task.isCancelled {
-                try? await Task.sleep(
+                try? await Task<Never, Never>.sleep(
                     for: .milliseconds(50)
                 )
 
