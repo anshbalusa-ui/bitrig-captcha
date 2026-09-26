@@ -8,7 +8,7 @@ The app opens on a dedicated **HUMAN** landing page instead of dropping directly
 
 - brand: **HUMAN**
 - line: **“Your phone is the challenge.”**
-- fold-reactive logo whose center hinge mark mirrors the real Duo angle
+- clean HUMAN wordmark with a separate protractor symbol whose needle mirrors the real Duo angle
 - native Liquid Glass presentation
 - **protractor-style semicircle hinge visualizer** with a live needle, target needle, and target tolerance band
 - **live numeric hinge angle that changes on-screen as the phone is physically bent**
