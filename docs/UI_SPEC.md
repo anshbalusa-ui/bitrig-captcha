@@ -10,15 +10,17 @@ The main screen should contain:
 
 - title: **Verify you're here**
 - instruction: **Match the fold** or **Hold here**
-- ghosted target fold shape
-- live current fold shape
+- **semicircle protractor ring covering the 0°–180° hinge range**
+- live current-angle needle
+- ghosted target-angle needle
+- highlighted target tolerance band around the requested angle
 - **live numeric current-angle readout that updates continuously while the phone is being bent; this is required, not optional**
 - tiny step progress indicator such as **● ● ○**
 - short status text such as **Getting close**, **Matched**, or **Hold steady**
 
-The live fold visualization is the hero. It should mirror the physical Duo continuously as the user moves the hinge. **Directly alongside the visualization, show the current measured hinge angle in degrees and update it in real time with every hinge change so the user can literally watch the number change while bending the phone.** The target visualization should appear as a translucent or ghosted reference shape behind or alongside the live state.
+The live angle visualization is the hero and should be designed like a **clean semicircle protractor/ring**. The full arc represents the Duo’s 0°–180° hinge range. A solid live needle moves continuously with the physical hinge, while a ghosted target needle shows the requested angle. The ±3° valid range should appear as a subtle highlighted segment of the ring around the target. **Directly alongside the visualization, show the current measured hinge angle in degrees and update it in real time with every hinge change so the user can literally watch the number change while bending the phone.** The current numeric angle should sit inside the protractor and update continuously with monospaced digits (for example, 54° → 55° → 56°), while the requested target remains visible as secondary text. Major reference labels such as 0°, 90°, and 180° may appear around the ring so the visualization reads instantly like a physical protractor.
 
-The user should not need to understand what “68°” looks like. The intended behavior is simply: **make the real phone match the ghosted phone.**
+The user should not need to estimate an angle from the number alone. The intended behavior is simply: **move the live needle into the ghosted target zone on the protractor.**
 
 ## Glassmorphic treatment
 
