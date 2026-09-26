@@ -87,16 +87,18 @@ struct ChallengeView: View {
             }
 
             #if DEBUG
-            DebugHingeControls(
-                angle: Binding(
-                    get: {
-                        viewModel.currentAngle
-                    },
-                    set: {
-                        viewModel.receiveDebugAngle($0)
-                    }
+            if !viewModel.hingeAvailable {
+                DebugHingeControls(
+                    angle: Binding(
+                        get: {
+                            viewModel.currentAngle
+                        },
+                        set: {
+                            viewModel.receiveDebugAngle($0)
+                        }
+                    )
                 )
-            )
+            }
             #endif
         }
         .frame(
