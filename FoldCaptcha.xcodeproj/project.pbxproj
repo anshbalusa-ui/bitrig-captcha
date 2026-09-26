@@ -1,0 +1,311 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000015 /* FoldCaptchaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000014 /* FoldCaptchaApp.swift */; };
+		000000000000000000000017 /* FoldChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000016 /* FoldChallenge.swift */; };
+		000000000000000000000019 /* VerificationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000018 /* VerificationResult.swift */; };
+		00000000000000000000001B /* ChallengeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001A /* ChallengeGenerator.swift */; };
+		00000000000000000000001D /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001C /* HapticService.swift */; };
+		00000000000000000000001F /* HingeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001E /* HingeService.swift */; };
+		000000000000000000000021 /* RemoteVerificationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000020 /* RemoteVerificationClient.swift */; };
+		000000000000000000000023 /* TrajectoryValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000022 /* TrajectoryValidator.swift */; };
+		000000000000000000000025 /* ChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000024 /* ChallengeViewModel.swift */; };
+		000000000000000000000027 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000026 /* ChallengeView.swift */; };
+		000000000000000000000029 /* DebugHingeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000028 /* DebugHingeControls.swift */; };
+		00000000000000000000002B /* FoldVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002A /* FoldVisualizer.swift */; };
+		00000000000000000000002D /* VerificationSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002C /* VerificationSuccessView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		000000000000000000000014 /* FoldCaptchaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldCaptchaApp.swift; sourceTree = "<group>"; };
+		000000000000000000000016 /* FoldChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldChallenge.swift; sourceTree = "<group>"; };
+		000000000000000000000018 /* VerificationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationResult.swift; sourceTree = "<group>"; };
+		00000000000000000000001A /* ChallengeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeGenerator.swift; sourceTree = "<group>"; };
+		00000000000000000000001C /* HapticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		00000000000000000000001E /* HingeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HingeService.swift; sourceTree = "<group>"; };
+		000000000000000000000020 /* RemoteVerificationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteVerificationClient.swift; sourceTree = "<group>"; };
+		000000000000000000000022 /* TrajectoryValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrajectoryValidator.swift; sourceTree = "<group>"; };
+		000000000000000000000024 /* ChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewModel.swift; sourceTree = "<group>"; };
+		000000000000000000000026 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
+		000000000000000000000028 /* DebugHingeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHingeControls.swift; sourceTree = "<group>"; };
+		00000000000000000000002A /* FoldVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldVisualizer.swift; sourceTree = "<group>"; };
+		00000000000000000000002C /* VerificationSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationSuccessView.swift; sourceTree = "<group>"; };
+		000000000000000000000003 /* FoldCaptcha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoldCaptcha.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00000000000000000000000C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000004 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000005 /* App */,
+				000000000000000000000006 /* Models */,
+				000000000000000000000007 /* Services */,
+				000000000000000000000008 /* ViewModels */,
+				000000000000000000000009 /* Views */,
+				00000000000000000000000A /* Products */,
+			);
+			path = FoldCaptcha;
+			sourceTree = "<group>";
+		};
+		000000000000000000000005 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000014 /* FoldCaptchaApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		000000000000000000000006 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000016 /* FoldChallenge.swift */,
+				000000000000000000000018 /* VerificationResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		000000000000000000000007 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000001A /* ChallengeGenerator.swift */,
+				00000000000000000000001C /* HapticService.swift */,
+				00000000000000000000001E /* HingeService.swift */,
+				000000000000000000000020 /* RemoteVerificationClient.swift */,
+				000000000000000000000022 /* TrajectoryValidator.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		000000000000000000000008 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000024 /* ChallengeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		000000000000000000000009 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000026 /* ChallengeView.swift */,
+				000000000000000000000028 /* DebugHingeControls.swift */,
+				00000000000000000000002A /* FoldVisualizer.swift */,
+				00000000000000000000002C /* VerificationSuccessView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		00000000000000000000000A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000003 /* FoldCaptcha.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000000002 /* FoldCaptcha */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00000000000000000000000F /* Build configuration list for PBXNativeTarget "FoldCaptcha" */;
+			buildPhases = (
+				00000000000000000000000B /* Sources */,
+				00000000000000000000000C /* Frameworks */,
+				00000000000000000000000D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoldCaptcha;
+			productName = FoldCaptcha;
+			productReference = 000000000000000000000003 /* FoldCaptcha.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2710;
+				LastUpgradeCheck = 2710;
+				TargetAttributes = {
+					000000000000000000000002 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+				};
+			};
+			buildConfigurationList = 00000000000000000000000E /* Build configuration list for PBXProject "FoldCaptcha" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000004;
+			productRefGroup = 00000000000000000000000A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000000002 /* FoldCaptcha */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00000000000000000000000D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00000000000000000000000B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000015 /* FoldCaptchaApp.swift in Sources */,
+				000000000000000000000017 /* FoldChallenge.swift in Sources */,
+				000000000000000000000019 /* VerificationResult.swift in Sources */,
+				00000000000000000000001B /* ChallengeGenerator.swift in Sources */,
+				00000000000000000000001D /* HapticService.swift in Sources */,
+				00000000000000000000001F /* HingeService.swift in Sources */,
+				000000000000000000000021 /* RemoteVerificationClient.swift in Sources */,
+				000000000000000000000023 /* TrajectoryValidator.swift in Sources */,
+				000000000000000000000025 /* ChallengeViewModel.swift in Sources */,
+				000000000000000000000027 /* ChallengeView.swift in Sources */,
+				000000000000000000000029 /* DebugHingeControls.swift in Sources */,
+				00000000000000000000002B /* FoldVisualizer.swift in Sources */,
+				00000000000000000000002D /* VerificationSuccessView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		000000000000000000000010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		000000000000000000000011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.1;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		000000000000000000000012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fold CAPTCHA";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitrig.FoldCaptcha;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		000000000000000000000013 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fold CAPTCHA";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bitrig.FoldCaptcha;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00000000000000000000000E /* Build configuration list for PBXProject "FoldCaptcha" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000010 /* Debug */,
+				000000000000000000000011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00000000000000000000000F /* Build configuration list for PBXNativeTarget "FoldCaptcha" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000012 /* Debug */,
+				000000000000000000000013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
