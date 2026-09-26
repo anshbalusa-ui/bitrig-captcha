@@ -34,9 +34,6 @@ final class ChallengeViewModel: ObservableObject {
         self.challenge = challengeGenerator.makeChallenge()
     }
 
-    deinit {
-        holdTask?.cancel()
-    }
 
     var currentTarget: FoldTarget? {
         guard challenge.targets.indices.contains(currentIndex) else {
@@ -97,7 +94,6 @@ final class ChallengeViewModel: ObservableObject {
     func receiveDebugAngle(
         _ angle: Double
     ) {
-        hingeAvailable = true
         processAngle(
             angle,
             timestamp: Date()
