@@ -74,12 +74,9 @@ struct LandingView: View {
             .frame(maxWidth: 560)
             .frame(maxWidth: .infinity)
         }
-        .onAppear {
-            initialAngle = viewModel.currentAngle
-        }
         .onChange(
             of: viewModel.currentAngle
-        ) { oldValue, newValue in
+        ) { _, newValue in
             guard
                 viewModel.hingeAvailable,
                 !hasStartedFold
@@ -87,11 +84,11 @@ struct LandingView: View {
                 return
             }
 
-            if initialAngle == nil {
-                initialAngle = oldValue
-            }
-
+            // Treat the first real Duo reading as the baseline so opening the
+            // app never auto-starts just because the initial placeholder angle
+            // differs from the hardware angle.
             guard let initialAngle else {
+                self.initialAngle = newValue
                 return
             }
 
