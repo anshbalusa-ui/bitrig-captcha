@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RootView: View {
-    enum Screen {
+    enum Screen: Equatable {
         case landing
         case challenge
     }
