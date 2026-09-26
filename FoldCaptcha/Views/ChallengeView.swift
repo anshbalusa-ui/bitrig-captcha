@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChallengeView: View {
-    @StateObject var viewModel: ChallengeViewModel
+    @ObservedObject var viewModel: ChallengeViewModel
 
     var body: some View {
         GeometryReader { proxy in
@@ -33,12 +33,6 @@ struct ChallengeView: View {
                 }
                 .padding(24)
             }
-        }
-        .trackDuoHinge { reading in
-            viewModel.receiveHingeReading(reading)
-        }
-        .task {
-            viewModel.prepare()
         }
     }
 
